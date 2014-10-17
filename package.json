@@ -17,6 +17,13 @@
   },
   "homepage": "https://github.com/hellooragne/build_manage",
   "dependencies": {
-    "mysql": "*"
+    "mysql": "*",
+	"urlencode":"",
+	"express":"",
+	"restler":"",
+	"nlogger":"",
+	"mongodb":"",
+	"socket.io":"",
+	"ejs":""
   }
 }
