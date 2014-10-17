@@ -20,7 +20,7 @@ var taskm = {
 
 			console.log('The solution is: ', rows[0].pid, rows[0].start, rows[0].end);
 		});
-	}
+	},
 
 	setproject: function() {
 		connection.query('insert into project', function(err, rows, fields) {
@@ -28,7 +28,7 @@ var taskm = {
 
 			console.log('The solution is: ', rows[0].pid, rows[0].start, rows[0].end);
 		});
-	}
+	},
 
 	delproject: function() {
 
