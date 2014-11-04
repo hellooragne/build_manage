@@ -24,6 +24,7 @@
 	"nlogger":"",
 	"mongodb":"",
 	"socket.io":"",
-	"ejs":""
+	"ejs":"",
+	"sprintf":""
   }
 }

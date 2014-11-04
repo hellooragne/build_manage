@@ -3,7 +3,9 @@ module.exports = function(app) {
 
 	app.get('/task', function (req, res) {
 		var m = require('../model/taskm.js');
+		m.createproject();
 		m.getproject();
+		m.insertproject('hello', 'world');
 		res.render('task', {
 			url:'',
 		});

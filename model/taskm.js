@@ -1,6 +1,6 @@
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-  host     : '121.40.198.251',
+  host     : '127.0.0.1',
   user     : 'root',
   password : '123456',
   connectTimeout : '200',
@@ -9,29 +9,45 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
+sprintf = require('sprintf').sprintf;
 
 
 var taskm = {
-	name: "taskm",
+	task_name: "taskm",
 
 	getproject: function() {
 		connection.query('SELECT * from project', function(err, rows, fields) {
 			if (err) throw err;
 
-			console.log('The solution is: ', rows[0].pid, rows[0].start, rows[0].end);
+			console.log('The solution is: ', rows[0].name, rows[0].content);
 		});
 	},
 
-	setproject: function() {
-		connection.query('insert into project', function(err, rows, fields) {
+	insertproject: function(n, content) {
+
+		connection.query('INSERT INTO project SET ?', {name: n, content: content}, function(err, result) {
+			  if (err) throw err;
+
+			    console.log(result.insertId);
+		});
+	},
+
+	delproject: function(id) {
+		var sql = sprintf("delete from project where id = %s", id);
+		connection.query(sql, function(err, result) {
+			  if (err) throw err;
+
+			    console.log(result);
+		});
+	},
+
+	createproject: function() {
+		var sql = "CREATE TABLE IF NOT EXISTS `project` (id int auto_increment primary key not null, name varchar(200), start datetime  not null, end datetime  not null, content varchar(1000))";
+		connection.query(sql, function(err, rows, fields) {
 			if (err) throw err;
 
-			console.log('The solution is: ', rows[0].pid, rows[0].start, rows[0].end);
+			console.log('The solution is: ', rows);
 		});
-	},
-
-	delproject: function() {
-
 	}
 
 };
