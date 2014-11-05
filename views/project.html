@@ -1,0 +1,91 @@
+<% include header.html %>
+
+<link href="/assets/css/filter.css" rel="stylesheet">
+<script src="/socket.io/node_modules/socket.io-client/dist/socket.io.js"></script>
+<script>
+	var socket_m = io.connect("<%=url%>");
+	socket_m.on('news', function (data) {
+		console.log(data);
+		$("#sendarea").append(data + "\n");
+	});
+
+	$(document).ready(function(){
+		$("#send").click(function(){
+			var data = new Array();
+			socket_m.emit('message', { my: $("#sendtxt")[0].value });
+			$("#sendarea").append($("#sendtxt")[0].value + "\n");
+			//socket_m.emit('message', data);
+		});
+	});
+</script>
+
+
+<!-- Callout for the old docs link -->
+
+<div class="container bs-docs-container">
+	<div class="row">
+		<div class="col-md-3">
+			<div class="bs-docs-sidebar hidden-print affix-top" role="complementary">
+				
+				<!-- <ul class="nav bs-sidenav"> -->
+				<ul class="nav bs-sidenav">
+
+          			<form action="/project/create" method="get">
+						<div class="alert alert-info" role="alert">
+									工程列表
+									<div class="input-group">
+										  <input type="text" class="form-control" name="name"/>
+											<span class="input-group-btn">
+												  <button type="submit" class="btn btn-default submit">
+														<span class="glyphicon glyphicon-plus"></span>
+												</button>
+											</span>
+									</div><!-- /input-group -->
+						 </div>
+					 </form>
+					<li class="active">
+					
+					<ul class="nav">
+						<% for (x in rows) {%>
+						<li class=""><a href="#overview-doctype"><%=rows[x].name %></a></li>
+						<% } %>
+					</ul>
+					</li>
+					<li>
+				</ul>
+			</div>
+		</div>
+
+
+	<!-- begin -->
+	<div class="col-md-9" role="main">
+
+		<div class="page-header">
+			<h1 id="download">工程</h1>
+
+		</div>
+
+		<div class="panel panel-default">
+			
+			<ul class="nav nav-tabs" role="tablist">
+				<li class="active"><a href="#res" data-toggle="tab">a</a></li>
+				<li><a href="#res1" data-toggle="tab">b</a></li>
+				<li><a href="#res2" data-toggle="tab">c</a></li>
+			</ul>
+			 <div class="tab-content tip-example">
+				<div class="tab-pane active" id="res">
+					123456
+				</div>
+				<div class="tab-pane" id="res1">
+					12
+				</div>
+				<div class="tab-pane" id="res2">
+					12345
+				</div>
+			</div>
+		</div>              
+
+	</div>
+</div>
+
+<% include footer.html %>

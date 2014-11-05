@@ -1,4 +1,4 @@
 
 module.exports = function(app) {
-	require('./task.js')(app);
+	require('./project.js')(app);
 };
