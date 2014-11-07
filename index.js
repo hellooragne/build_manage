@@ -22,6 +22,7 @@ var os=require('os');
 var ifaces=os.networkInterfaces();
 
 urls = "http://" + ifaces['eth0'][0].address + ":8082";
+
 /*
 app.all('*', function(req, res, next) {  
     res.header("Access-Control-Allow-Origin", "*");  

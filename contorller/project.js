@@ -1,11 +1,19 @@
 module.exports = function(app) {
+	var m = require('../model/projectm.js');
+	m.createproject();
+	
+	var task = require('../model/taskm.js');
+	task.createtask();
+
 	app.get('/project', function (req, res) {
 		var m = require('../model/projectm.js');
-		m.createproject();
 		m.getproject(function(rows) {
-			res.render('project', {
-				url:'',
-				rows:rows,
+			task.gettask(function(taskrows) {
+				res.render('project', {
+					url:'',
+					rows:rows,
+					taskrows:taskrows,
+				});
 			});
 		});
 	});
@@ -17,5 +25,15 @@ module.exports = function(app) {
 			res.redirect('/project');
 		});
 	});
+
+
+	app.get('/task/create', function (req, res) {
+		var m = require('../model/taskm.js');
+
+		m.inserttask(req.query.project_id, req.query.name, '', function() {
+			res.redirect('/project');
+		});
+	});
+	
 };
 

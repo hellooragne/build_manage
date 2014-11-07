@@ -44,14 +44,14 @@
 						 </div>
 					 </form>
 					<li class="active">
-					
 					<ul class="nav">
 						<% for (x in rows) {%>
-						<li class=""><a href="#overview-doctype"><%=rows[x].name %></a></li>
+						<li class="">
+							<a href="#overview-doctype"><%=rows[x].name %></a>
+						</li>
 						<% } %>
 					</ul>
 					</li>
-					<li>
 				</ul>
 			</div>
 		</div>
@@ -65,25 +65,48 @@
 
 		</div>
 
-		<div class="panel panel-default">
-			
+		<div class="row">
+			<div class="col-md-8 panel panel-default">
+				<button type="button" class="btn btn-primary">Primary</button>
+				<button type="button" class="btn btn-success">Success</button>
+				<button type="button" class="btn btn-info">Info</button>
+				<button type="button" class="btn btn-warning">Warning</button>
+				<button type="button" class="btn btn-danger">Danger</button>
+			</div>
+
+			<div class="col-md-4">
+				<form action="/task/create" method="get">
+					<div class="col-md-8">
+						<input type="text" class="form-control" name="name"/>
+					</div>
+					<input type="hidden" name="project_id"  value="123" />
+					<span class="input-group-btn">
+						<button type="submit" class="btn btn-default submit">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+					</span>
+				</form>
+			</div>
+		</div>
+
+		<div class="row panel panel-default">
 			<ul class="nav nav-tabs" role="tablist">
-				<li class="active"><a href="#res" data-toggle="tab">a</a></li>
-				<li><a href="#res1" data-toggle="tab">b</a></li>
-				<li><a href="#res2" data-toggle="tab">c</a></li>
+				<li class="active"><a href="#res" data-toggle="tab">任务</a></li>
+				<li><a href="#res1" data-toggle="tab">功能属性</a></li>
 			</ul>
 			 <div class="tab-content tip-example">
-				<div class="tab-pane active" id="res">
-					123456
-				</div>
+				 <div class="tab-pane active" id="res">
+					 <% for (x in taskrows) { %>
+					 <div class="bs-callout bs-callout-danger">
+						 <%=taskrows[x].name%>	
+					 </div>
+					 <% } %>
+				 </div>
 				<div class="tab-pane" id="res1">
 					12
 				</div>
-				<div class="tab-pane" id="res2">
-					12345
-				</div>
 			</div>
-		</div>              
+		</div>       
 
 	</div>
 </div>
