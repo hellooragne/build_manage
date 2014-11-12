@@ -13,6 +13,17 @@ var taskm = {
 		});
 	},
 
+	gettaskone: function(id, get_cb) {
+		var sql = 'SELECT * from task';
+
+		connection.query(sql, function(err, rows, fields) {
+			if (err) throw err;
+
+			get_cb(rows);
+		});
+
+	},
+
 	inserttask: function(sql, cb) {
 		connection.query('INSERT INTO task SET ?', sql, function(err, result) {
 			  if (err) throw err;

@@ -24,6 +24,19 @@
 			    area: ['860px', '800px']
 			});	
 		});
+		
+		$("[id = task]").click(function(){
+			var name = $(this).attr("name");
+			$.layer({
+			    type: 2,
+			    border: [0],
+			    title: false,
+			    shadeClose: true,
+			    closeBtn: false,
+			    iframe: {src : '/task/show?id='+name},
+			    area: ['860px', '800px']
+			});	
+		});
 	});
 </script>
 
@@ -33,35 +46,35 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="bs-docs-sidebar hidden-print affix-top" role="complementary">
-				
-				<!-- <ul class="nav bs-sidenav"> -->
-				<ul class="nav bs-sidenav">
 
-          			<form action="/project/create" method="get">
-						<div class="alert alert-info" role="alert">
-									工程列表
-									<div class="input-group">
-										  <input type="text" class="form-control" name="name"/>
-											<span class="input-group-btn">
-												  <button type="submit" class="btn btn-default submit">
-														<span class="glyphicon glyphicon-plus"></span>
-												</button>
-											</span>
-									</div><!-- /input-group -->
-						 </div>
-					 </form>
-					<li class="active">
-					<ul class="nav">
-						<% for (x in rows) {%>
-						<li class="">
+				<!-- <ul class="nav bs-sidenav"> -->
+					<ul class="nav bs-sidenav">
+
+						<form action="/project/create" method="get">
+							<div class="alert alert-info" role="alert">
+								工程列表
+								<div class="input-group">
+									<input type="text" class="form-control" name="name"/>
+									<span class="input-group-btn">
+										<button type="submit" class="btn btn-default submit">
+											<span class="glyphicon glyphicon-plus"></span>
+										</button>
+									</span>
+								</div><!-- /input-group -->
+							</div>
+						</form>
+						<li class="active">
+						<ul class="nav">
+							<% for (x in rows) {%>
+							<li class="">
 							<a href="#overview-doctype"><%=rows[x].name %></a>
+							</li>
+							<% } %>
+						</ul>
 						</li>
-						<% } %>
 					</ul>
-					</li>
-				</ul>
+				</div>
 			</div>
-		</div>
 
 
 	<!-- begin -->
@@ -109,16 +122,18 @@
 								 <th>任务人</th>
 								 <th>开始时间</th>
 								 <th>结束时间</th>
+								 <th>-</th>
 							 </tr>
 						 </thead>
 						 <tbody>
 							 <%for (x in taskrows) { %>
 							 <tr class="">
 								 <td><%=x%></td>
-								 <td><a href="/task/show?id=<%=taskrows[x].id%>"><%=taskrows[x].name%></a></td>
+								 <td><a name="<%=taskrows[x].id%>" id="task"><%=taskrows[x].name%></a></td>
 								 <td><%=taskrows[x].people%></td>
 								 <td><%=taskrows[x].start%></td>
 								 <td><%=taskrows[x].end%></td>
+								 <td>del</td>
 							 </tr>
 							 <%}%>
 						 </tbody>

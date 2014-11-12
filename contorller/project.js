@@ -38,6 +38,17 @@ module.exports = function(app) {
 		});
 	});
 
+	app.get('/task/show', function (req, res) {
+
+		console.log(req.query.id);
+		task.gettaskone(req.query.id, function(taskrows) {
+			res.render('taskshow', {
+				url:'',
+				taskrows:taskrows,
+			});
+		});
+	});
+
 
 	app.get('/task', function (req, res) {
 		res.render('task', {
