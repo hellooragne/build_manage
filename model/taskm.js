@@ -13,9 +13,8 @@ var taskm = {
 		});
 	},
 
-	inserttask: function(project_id, name, content, cb) {
-
-		connection.query('INSERT INTO task SET ?', {project_id: project_id, name: name, content: content}, function(err, result) {
+	inserttask: function(sql, cb) {
+		connection.query('INSERT INTO task SET ?', sql, function(err, result) {
 			  if (err) throw err;
 
 			  cb();
@@ -32,7 +31,7 @@ var taskm = {
 	},
 
 	createtask: function() {
-		var sql = "CREATE TABLE IF NOT EXISTS `task` (id int auto_increment primary key not null, project_id int, name varchar(200), start datetime  not null, end datetime  not null, content varchar(1000))";
+		var sql = "CREATE TABLE IF NOT EXISTS `task` (id int auto_increment primary key not null, project_id int, name varchar(200), people varchar(200), start datetime  not null, end datetime  not null, content varchar(1000))";
 		connection.query(sql, function(err, rows, fields) {
 			if (err) throw err;
 		});

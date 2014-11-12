@@ -30,10 +30,19 @@ module.exports = function(app) {
 	app.get('/task/create', function (req, res) {
 		var m = require('../model/taskm.js');
 
-		m.inserttask(req.query.project_id, req.query.name, '', function() {
+		console.log("task create");
+
+		var sql = {project_id: req.query.project_id, name: req.query.name, people:req.query.people, content: req.query.content};
+		m.inserttask(sql, function() {
 			res.redirect('/project');
+		});
+	});
+
+
+	app.get('/task', function (req, res) {
+		res.render('task', {
+			url:'',
 		});
 	});
 	
 };
-
