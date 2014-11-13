@@ -48,6 +48,14 @@ module.exports = function(app) {
 			});
 		});
 	});
+	
+	app.get('/task/delete', function (req, res) {
+
+		console.log(req.query.id);
+		task.deltask(req.query.id, function() {
+			res.redirect('/project');
+		});
+	});
 
 
 	app.get('/task', function (req, res) {

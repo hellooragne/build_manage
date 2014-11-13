@@ -32,12 +32,12 @@ var taskm = {
 		});
 	},
 
-	deltask: function(id) {
+	deltask: function(id, cb) {
 		var sql = sprintf("delete from task where id = %s", id);
 		connection.query(sql, function(err, result) {
 			  if (err) throw err;
 
-			    console.log(result);
+			  cb();
 		});
 	},
 

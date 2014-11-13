@@ -133,7 +133,7 @@
 								 <td><%=taskrows[x].people%></td>
 								 <td><%=taskrows[x].start%></td>
 								 <td><%=taskrows[x].end%></td>
-								 <td>del</td>
+								 <td><a href="/task/delete?id=<%=taskrows[x].id%>" class="btn btn-danger">删除</a></td>
 							 </tr>
 							 <%}%>
 						 </tbody>
