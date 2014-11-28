@@ -1,8 +1,5 @@
-
 var connection = require('./db.js');
-
 sprintf = require('sprintf').sprintf;
-
 
 var projectm = {
 	project_name: "projectm",
@@ -40,7 +37,6 @@ var projectm = {
 			if (err) throw err;
 		});
 	}
-
 };
 
 module.exports = projectm;
